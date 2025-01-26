@@ -9,11 +9,11 @@ ENV CONJUR_PASSWORD=""
 ENV CONJUR_CLI_INSECURE=false
 
 COPY src /
-RUN chmod +x /entrypoint.sh
+# RUN chmod +x /entrypoint.sh
 
 USER cli
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["bash", "/entrypoint.sh"]
 CMD ["conjur", "help"]
 
 FROM base AS dev
