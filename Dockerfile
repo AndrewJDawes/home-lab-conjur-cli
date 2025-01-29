@@ -1,6 +1,4 @@
-FROM cyberark/conjur-cli:8 AS base
-
-USER root
+FROM ghcr.io/andrewjdawes/conjur-cli-go:8 AS base
 
 ENV CONJUR_SERVER_APPLIANCE_URL=""
 ENV CONJUR_ORG_ACCOUNT=""
@@ -9,21 +7,11 @@ ENV CONJUR_PASSWORD=""
 ENV CONJUR_CLI_INSECURE=false
 
 COPY src /
-# RUN chmod +x /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-USER cli
-
-ENTRYPOINT ["bash", "/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["conjur", "help"]
 
 FROM base AS dev
 
-USER root
-
-# Install gzip
-RUN microdnf install -y gzip git sudo iputils hostname findutils less nano net-tools bind-utils;
-
-# Make the "cli" user a sudoer without any password
-RUN echo "cli ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-
-USER cli
+RUN apk add --no-cache bash git
