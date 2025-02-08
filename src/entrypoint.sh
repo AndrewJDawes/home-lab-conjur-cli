@@ -35,6 +35,13 @@ fi
 
 eval "${init_command}"
 
+# wait for conjur to be ready
+echo "Checking if Conjur is ready..."
+until conjur whoami 1>/dev/null 2>&1; do
+  echo "Waiting for Conjur to be ready..."
+  sleep 1
+done
+
 conjur login -i "${CONJUR_USERNAME}" -p "${CONJUR_PASSWORD}"
 
 exec "$@"

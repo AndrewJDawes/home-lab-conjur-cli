@@ -6,10 +6,13 @@ ENV CONJUR_USERNAME=""
 ENV CONJUR_PASSWORD=""
 ENV CONJUR_CLI_INSECURE=false
 
-COPY src /
-RUN chmod +x /entrypoint.sh
+COPY src /home-lab-conjur-cli/src
 
-ENTRYPOINT ["/entrypoint.sh"]
+WORKDIR /home-lab-conjur-cli/src
+
+RUN chmod +x ./entrypoint.sh
+
+ENTRYPOINT ["./entrypoint.sh"]
 CMD ["conjur", "help"]
 
 FROM base AS dev

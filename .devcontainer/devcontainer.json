@@ -13,7 +13,7 @@
 	"service": "conjur_cli_service",
 	// The optional 'workspaceFolder' property is the path VS Code should open by default when
 	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
-	"workspaceFolder": "/workspace",
+	"workspaceFolder": "/home-lab-conjur-cli/",
 	"initializeCommand": "docker network create conjur_external || true",
 	"postAttachCommand": "echo 'Conjur CLI container attached!'"
 	// Features to add to the dev container. More info: https://containers.dev/features.
