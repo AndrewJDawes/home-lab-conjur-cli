@@ -6,6 +6,8 @@ ENV CONJUR_USERNAME=""
 ENV CONJUR_PASSWORD=""
 ENV CONJUR_CLI_INSECURE=false
 
+RUN apk add --no-cache curl
+
 COPY src /home-lab-conjur-cli/src
 
 WORKDIR /home-lab-conjur-cli/src

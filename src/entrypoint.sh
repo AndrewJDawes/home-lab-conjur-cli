@@ -37,7 +37,7 @@ eval "${init_command}"
 
 # wait for conjur to be ready
 echo "Checking if Conjur is ready..."
-until conjur whoami 1>/dev/null 2>&1; do
+until curl $CONJUR_SERVER_APPLIANCE_URL 1>/dev/null 2>&1; do
   echo "Waiting for Conjur to be ready..."
   sleep 1
 done
